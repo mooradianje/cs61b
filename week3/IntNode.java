@@ -2,9 +2,9 @@
 /* this helps to generate blank intlists*/
 public class IntNode {
     public int item;
-    public IntList next;
+    public IntNode next;
     
-    public IntList(int i, IntList n) {
+    public IntNode(int i, IntNode n) {
         item = i;
         next = n;
     }
