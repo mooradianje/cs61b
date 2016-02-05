@@ -17,7 +17,9 @@ public class SList {
     }
     
     public SList(int x) {
-        front = new IntNode(x,null);
+        front = new IntNode(235635,null);
+        
+        front.next = new IntNode(x,null);
         size = 1;
     }
     public void insertBack(int x) {
@@ -25,22 +27,25 @@ public class SList {
         
         // step p along until p.next = null
         // because this means that p is the last item
-        if(front != null) {
-            while (p.next != null) {
-                p = p.next;
-            }
-            p.next = new IntNode(x,null);
-            size = size + 1;
+        while (p.next != null) {
+            p = p.next;
         }
-        else {
-            front = new IntNode(x,null);
-            size = size+1;
-        }
+        p.next = new IntNode(x,null);
+        size = size + 1;
     }
     
+    // start with;
+    // [???] -> 53
+    // want to insert 16
+    // a new node is 
     public void insertFront(int x) {
-        front = new IntNode(x,front);
+        front.next = new IntNode(x,front.next);
         size = size + 1;
+        
+        /* other way of expressing it*/
+        //IntNode oldFrontItem = front.next;
+        //IntNode newFrontItem = new IntNode(x,oldFrontItem);
+        //front.next = newFrontItem;
     }
     
     /*returns number of items in this SList*/
@@ -59,7 +64,7 @@ public class SList {
     }
     /* returns front of list*/
     public int getFront() {
-        return front.item;
+        return front.next.item;
     }
     /* returns back of list*/
     public int getBack() {

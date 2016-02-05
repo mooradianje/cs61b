@@ -19,7 +19,7 @@ public class SListTest {
         numpass = numpass + 1;
     }
     
-    public static void testEmptyList() {
+ /*   public static void testEmptyList() {
         SList L = new SList();
         boolean nullEq = Objects.deepEquals(null,L.front);
         System.out.println("Null SList: " + nullEq);
@@ -29,7 +29,8 @@ public class SListTest {
         }
         numtests = numtests + 1;
         numpass = numpass + 1;
-    }
+    }*/
+    
     
     public static void testEmptySize() {
         SList L = new SList();
@@ -46,7 +47,7 @@ public class SListTest {
     public static void testOperationsOnEmptyList() {
         SList L = new SList();
         L.insertBack(85);
-        System.out.println("InsertBack Success. L=" + L.front.item);
+        System.out.println("InsertBack Success. L=" + L.front.next.item);
         L= new SList();
         L.insertFront(99);
         System.out.println("InsertFront Success. L=" + L.front.item);
