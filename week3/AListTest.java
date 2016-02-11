@@ -22,7 +22,7 @@ public class AListTest {
         }
         numtests = numtests + 1;
         numpass = numpass + 1;
-    }*/
+    } */
     
     
     public static void testEmptySize() {
@@ -51,6 +51,28 @@ public class AListTest {
         numtests = numtests + 1;
         numpass = numpass + 1;
     } 
+   
+     public static void testMegaInsert() {
+        AList L = new AList();
+        int N = 1000;
+        for (int i=0; i<N; i+=1) {
+            L.insertBack(i);
+        }
+        
+        boolean sizeEq = Objects.deepEquals(N,L.size());
+        System.out.println("Size Equals: " + sizeEq);        
+
+        int numEq = 0;
+        for (int i = 0; i<N; i += 1) {
+            if (Objects.deepEquals(i, L.get(i)) == true) numEq += 1;
+        }
+        if(sizeEq == false || numEq != N){
+            System.out.println("Failed Mega Insert - sizepass: " + sizeEq + "  numequal: " + numEq);
+            numpass = numpass - 1;
+        }
+        numtests = numtests + 1;
+        numpass = numpass + 1;
+    }   
    
     public static void testInsertAndGet() {
         AList L = new AList();
@@ -93,7 +115,7 @@ public class AListTest {
         testInsertAndSize();
         testInsertAndGet();
         testDelete();
-        //testOperationsOnEmptyList();
+        testMegaInsert();
         //testGets();
         
         System.out.println("Tests run: " + numtests + "   Tests Passed: " + numpass);

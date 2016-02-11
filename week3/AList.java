@@ -9,15 +9,30 @@ public class AList {
         5:  
         
         */
-    int[] items;
-    int size;
+    private int[] items;
+    private int size;
     /*empty alist*/
     public AList() {
         items = new int[100];
         size = 0;
     }
     
+    /**resize items to be capacity C and 
+    does the copy for you
+    private bcos we dont want people to have to do this
+    manually.**/
+    private void resize(int c) {
+        int[] newItems = new int[c];
+        for (int i=0; i<items.length; i += 1) {
+            newItems[i] = items[i];
+        }
+        items = newItems;
+    }
+    
     public void insertBack(int x) {
+        if(size == items.length) 
+            //can be any factor - multiplicative is much better than additive
+            resize(items.length * 2);
         items[size] = x;
         size = size + 1;
     }
@@ -27,6 +42,8 @@ public class AList {
     }
     
     public int get(int i){
+        if (i>size)
+            throw new IllegalArgumentException("i is too big");
         return items[i];
     }
     
