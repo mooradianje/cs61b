@@ -1,13 +1,11 @@
-/* From lecture 6b*/
 import java.util.Objects;
-
-public class SListTest {
+class TestMaxSList {
     public static int numtests = 0;
     public static int numpass = 0;
-    
+        
     public static void testSize() {
         
-        SList L = new SList(5);
+        MaxSList L = new MaxSList(5);
         L.insertFront(99);
         boolean sizeEq = Objects.equals(2,L.size());
         System.out.println("Size Equal: " + sizeEq);
@@ -18,24 +16,12 @@ public class SListTest {
         numtests = numtests + 1;
         numpass = numpass + 1;
     }
-    
- /*   public static void testEmptyList() {
-        SList L = new SList();
-        boolean nullEq = Objects.deepEquals(null,L.front);
-        System.out.println("Null SList: " + nullEq);
-        if(nullEq == false){
-            System.out.println("Expected null, got " + L);
-            numpass = numpass - 1;    
-        }
-        numtests = numtests + 1;
-        numpass = numpass + 1;
-    }*/
-    
+
     
     public static void testEmptySize() {
-        SList L = new SList();
+        MaxSList L = new MaxSList();
         boolean nullEq = Objects.deepEquals(0,L.size());
-        System.out.println("Empty SList: " + nullEq);
+        System.out.println("Empty MaxSList: " + nullEq);
         if(nullEq == false){
             System.out.println("Expected 0, got " + L);
             numpass = numpass - 1;
@@ -45,10 +31,10 @@ public class SListTest {
     }
     
     public static void testOperationsOnEmptyList() {
-        SList L = new SList();
+        MaxSList L = new MaxSList();
         L.insertBack(85);
         System.out.println("InsertBack Success. L=" + L.getBack());
-        L= new SList();
+        L= new MaxSList();
         L.insertFront(99);
         System.out.println("InsertFront Success. L=" + L.getFront());
         boolean nullEq = Objects.deepEquals(1,L.size());
@@ -62,7 +48,7 @@ public class SListTest {
     } 
     
     public static void testGets() {
-        SList L = new SList(5);
+        MaxSList L = new MaxSList(5);
         L.insertFront(99);
         L.insertBack(100);
         boolean frontEq = Objects.deepEquals(99,L.getFront());
@@ -75,6 +61,25 @@ public class SListTest {
         numpass = numpass + 1;
     }
     
+    public static void testMax() {
+        MaxSList L = new MaxSList();
+        int fail = 0;
+        L.insertBack(50);
+        if( Objects.deepEquals(50,L.max()) == false) {
+            System.out.println("Simple Max Failed.");
+            fail=1;
+        }
+        L.insertFront(300);
+        L.insertBack(-9);
+        L.insertFront(20);
+        
+        if(Objects.deepEquals(300,L.max())==false) {
+            System.out.println("Multi-value Max Failed");
+            fail=1;
+        }
+        numtests=numtests + 1;
+        numpass = numpass + 1 - fail;
+    }
 
     public static void main(String[] args) {
         testSize();
@@ -82,8 +87,8 @@ public class SListTest {
         testEmptySize();
         testOperationsOnEmptyList();
         testGets();
+        testMax();
         
         System.out.println("Tests run: " + numtests + "   Tests Passed: " + numpass);
     }
-    
 }

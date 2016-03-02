@@ -5,24 +5,31 @@ representing a list of numbers*/
 
 
 public class SList {
+    //private IntNode sentinel;
+    private IntNode front;
+    private int size;
+    public String flavor = "Vanilla";
     
-    public IntNode front;
-    public int size;
-    
+    public void printFlavor() {
+        System.out.println("SList's Flavor is " + flavor);
+    }
     public SList() {
         size = 0;
         /* fix for issues with the null case*/
         front = new IntNode(89724,null);
         //front  = null;
+        //Chatty - tells that the SList Constructor was called
+        System.out.println("The 0 argument SList constructor was called");
     }
     
+    //constructor for slist
     public SList(int x) {
         front = new IntNode(235635,null);
-        
         front.next = new IntNode(x,null);
         size = 1;
     }
     public void insertBack(int x) {
+        System.out.println("SList's insert back was called");
         IntNode p = front;
         
         // step p along until p.next = null
@@ -39,6 +46,7 @@ public class SList {
     // want to insert 16
     // a new node is 
     public void insertFront(int x) {
+        System.out.println("SList's insert front was called");
         front.next = new IntNode(x,front.next);
         size = size + 1;
         
