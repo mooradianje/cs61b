@@ -3,8 +3,10 @@
 /* much more user friendly & reasonable class
 representing a list of numbers*/
 
-
-public class SList {
+//extends XList added for lecture 10
+//changed to implement near end of lecture - INTERFACE
+// end of lec10 EXTENDS ABSTRACT XLIST
+public class SList extends AbstractXList{
     //private IntNode sentinel;
     private IntNode front;
     private int size;
@@ -19,7 +21,7 @@ public class SList {
         front = new IntNode(89724,null);
         //front  = null;
         //Chatty - tells that the SList Constructor was called
-        System.out.println("The 0 argument SList constructor was called");
+        //System.out.println("The 0 argument SList constructor was called");
     }
     
     //constructor for slist
@@ -28,6 +30,8 @@ public class SList {
         front.next = new IntNode(x,null);
         size = 1;
     }
+    
+    @Override
     public void insertBack(int x) {
         System.out.println("SList's insert back was called");
         IntNode p = front;
@@ -57,6 +61,7 @@ public class SList {
     }
     
     /*returns number of items in this SList*/
+    @Override
     public int size() {
        return size;
        //return sizeHelper(front);
@@ -74,7 +79,11 @@ public class SList {
     public int getFront() {
         return front.next.item;
     }
+    
     /* returns back of list*/
+    // removed as of end of lecture 10
+    // getback redundancy with get(i) - from abstract class AbstractXList
+    /*@Override
     public int getBack() {
         if (size == 0) {
             System.out.println("Null SList");
@@ -83,6 +92,24 @@ public class SList {
         IntNode p = front;
         while (p.next != null) {
                 p = p.next;
+            }
+        return p.item;
+    }*/
+    
+    /* returns item in position i of list*/
+    @Override
+    public int get(int i) {
+        //System.out.println("Size: " + size + "  Index: " + i);
+        if (size <= i) {
+            System.out.println("Index is greater than size!");
+            return 0;
+        }
+        int j = 0;
+        IntNode p = front;
+        while (j <= i) {
+                p = p.next;
+                //System.out.println(p.item);
+                j +=1;
             }
         return p.item;
     }

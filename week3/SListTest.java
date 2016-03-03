@@ -75,6 +75,25 @@ public class SListTest {
         numpass = numpass + 1;
     }
     
+    public static void testGeti() {
+        SList L = new SList(5);
+        L.insertFront(99);
+        L.insertBack(100);
+        L.insertBack(300);
+        L.insertBack(3);
+        L.insertBack(25);
+        //99,5,100,30,3,25
+        boolean getEq = Objects.deepEquals(100,L.get(2));
+        System.out.println("MidGet: " + getEq);  
+        boolean getEq2 = Objects.deepEquals(25,L.get(5));
+        System.out.println("EndGet: " + getEq2);  
+        boolean getEq3 = Objects.deepEquals(0,L.get(6));
+        System.out.println("NonValue Equals: " + getEq3);          
+        if(getEq == false || getEq2 == false || getEq3 == false) numpass = numpass - 1;
+        numtests = numtests + 1;
+        numpass = numpass + 1;
+    }    
+    
 
     public static void main(String[] args) {
         testSize();
@@ -82,6 +101,7 @@ public class SListTest {
         testEmptySize();
         testOperationsOnEmptyList();
         testGets();
+        testGeti();
         
         System.out.println("Tests run: " + numtests + "   Tests Passed: " + numpass);
     }

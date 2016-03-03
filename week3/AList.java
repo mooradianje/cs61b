@@ -1,6 +1,9 @@
 /*array based list*/
 
-public class AList {
+// extends XList added in lecture 10
+//changed to implement near end of lecture - INTERFACE
+// end of lec10 EXTENDS ABSTRACT XLIST
+public class AList extends AbstractXList{
     /* INVARIANTS:
         1:  The next item to be inserted goes to position [size]
         2:  The last item in the list is in position [size-1]
@@ -28,7 +31,7 @@ public class AList {
         }
         items = newItems;
     }
-    
+    @Override
     public void insertBack(int x) {
         if(size == items.length) 
             //can be any factor - multiplicative is much better than additive
@@ -37,10 +40,15 @@ public class AList {
         size = size + 1;
     }
     
+    // removed as of end of lecture 10
+    // getback redundancy with get(i) - from abstract class AbstractXList
+    /*
+    @Override
     public int getBack() {
         return items[size-1];
-    }
+    }*/
     
+    @Override
     public int get(int i){
         if (i>size)
             throw new IllegalArgumentException("i is too big");
@@ -56,7 +64,7 @@ public class AList {
          return oldBack;
 
     }
-    
+    @Override
     public int size() {
         return size;
     }
